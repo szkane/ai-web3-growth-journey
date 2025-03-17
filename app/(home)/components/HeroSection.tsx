@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
@@ -31,14 +30,34 @@ export function HeroSection() {
       <Container className="relative z-10">
         <div className="flex flex-col items-center max-w-4xl mx-auto">
           <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <Image 
-                src="/aiweb3poster.png" 
-                alt="AI³ Growth Journey Logo" 
-                width={300} 
-                height={150} 
-                className="rounded-lg shadow-md" 
-              />
+            <div className="mb-6 flex items-center justify-center gap-3">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-indigo-600 dark:text-indigo-400"
+                aria-labelledby="triangleIconTitle"
+                role="img"
+              >
+                <title id="triangleIconTitle">AI+Web3 Growth Journey</title>
+                <path
+                  d="M24 4L44 40H4L24 4Z"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M24 22L34 38H14L24 22Z"
+                  fill="white"
+                  stroke="none"
+                />
+              </svg>
+              <h2 className="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                AI+Web3开发者成长计划
+              </h2>
             </div>
             
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">

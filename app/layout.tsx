@@ -30,7 +30,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <Banner id="site-under-construction" variant="rainbow">
-          🚧 网站正在建设中，部分内容由 AI 生成，如有错误，请见谅 🚧
+          🚧 网站正在建设中 🚧
         </Banner>
         <RootProvider>{children}</RootProvider>
       </body>

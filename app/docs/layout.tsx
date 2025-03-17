@@ -5,8 +5,8 @@ import { source } from '@/lib/source';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '01MVP 文档',
-  description: '01MVP 使用指南和开发文档',
+  title: 'AI³ Growth Journey 文档',
+  description: 'AI³ Growth Journey 使用指南和开发文档',
 };
 
 export default function Layout({ children }: { children: ReactNode }) {

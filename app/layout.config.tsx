@@ -16,9 +16,9 @@ export const baseOptions: BaseLayoutProps = {
           src="/icon.svg" 
           width={24} 
           height={24} 
-          alt="01MVP Logo" 
+          alt="Logo" 
         />
-        01MVP
+        AI³ Growth Journey
       </>
     ),
   },
