@@ -1,0 +1,18 @@
+{
+  "index": "项目介绍",
+  "pages": [
+    "---入门指南---",
+    "newbie",
+    "frontend", 
+    "solidity",
+    "---学习资源---",
+    "content",
+    "---活动主题---",
+    "theme-smart-contract",
+    "theme-ai-prompt",
+    "theme-web3-agent",
+    "theme-onchain-data",
+    "theme-no-code",
+    "theme-ai-gaming"
+  ]
+} 
