@@ -1,51 +1,39 @@
-import {Footer, Layout, Navbar} from 'nextra-theme-docs'
-import {Banner, Head} from 'nextra/components'
-import {getPageMap} from 'nextra/page-map'
-import 'nextra-theme-docs/style.css'
-import Link from "next/link";
+import './global.css';
+import { RootProvider } from 'fumadocs-ui/provider';
+import { Inter } from 'next/font/google';
+import type { ReactNode } from 'react';
+import type { Metadata } from 'next';
+import { Banner } from 'fumadocs-ui/components/banner';
 
-export const metadata = {
-    // Define your metadata here
-    // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
-}
+const inter = Inter({
+  subsets: ['latin'],
+});
 
-const banner = <Banner storageKey="some-key">AI Web3 Growth Journey Docs was created by <Link href="https://openbuild.xyz">Openbuild</Link> and <Link href="https://hackathonweekly.com">HackathonWeekly</Link></Banner>
-const navbar = (
-    <Navbar
-        logo={<img src="/images/general/logo.svg" alt="Logo" width={100} height={20}/>}
-        // ... Your additional navbar options
-    />
-)
-const footer = <Footer>MIT {new Date().getFullYear()} © Nextra.</Footer>
+// 配置网站元数据
+export const metadata: Metadata = {
+  title: {
+    default: 'AI Web3 Growth Journey',
+    template: '%s | AI Web3 Growth Journey',
+  },
+  description: 'AI Web3 Growth Journey',
+  keywords: ['AI Web3 Growth Journey', 'AI Web3', 'Web3', 'development', 'startup'],
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
+  manifest: '/manifest.json',
+};
 
-export default async function RootLayout({children}) {
-    return (
-        <html
-            // Not required, but good for SEO
-            lang="en"
-            // Required to be set
-            dir="ltr"
-            // Suggested by `next-themes` package https://github.com/pacocoursey/next-themes#with-app
-            suppressHydrationWarning
-        >
-        <Head
-            // ... Your additional head options
-        >
-            <link rel="shortcut icon" href="/images/general/icon.svg"/>
-            {/* Your additional tags should be passed as `children` of `<Head>` element */}
-        </Head>
-        <body>
-        <Layout
-            banner={banner}
-            navbar={navbar}
-            pageMap={await getPageMap()}
-            docsRepositoryBase="https://github.com/phucbm/nextra-docs-starter/tree/main"
-            footer={footer}
-            // ... Your additional layout options
-        >
-            {children}
-        </Layout>
-        </body>
-        </html>
-    )
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" className={inter.className} suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen">
+        <Banner id="site-under-construction" variant="rainbow">
+          🚧 网站正在建设中，部分内容由 AI 生成，如有错误，请见谅 🚧
+        </Banner>
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
+  );
 }
