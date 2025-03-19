@@ -1,11 +1,17 @@
 {
   "index": "项目介绍",
   "pages": [
+    "---开始学习---",
+    "introduction",
     "---入门指南---",
     "newbie",
     "frontend", 
     "solidity",
+    "---活动计划---",
+    "2025-03",
     "---学习资源---",
-    "content"
+    "content",
+    "---项目展示---",
+    "showcase"
   ]
 } 

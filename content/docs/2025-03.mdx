@@ -1,0 +1,140 @@
+---
+title: 3月深圳Mini Hackathon
+description: AI³ Growth Journey 3月活动 使用AI代码助手编写智能合约
+---
+
+# AI Code + 智能合约 Mini Hackathon
+
+## 活动概览
+
+**AI³ Growth Journey** 3月迷你黑客松将聚焦于**使用AI代码助手编写智能合约**，无论你是Web3新手还是有经验的开发者，都能通过AI工具快速实现智能合约开发。
+
+| 时间 | 2025年3月30日（周日），13:30-18:30 |
+| --- | --- |
+| 地点 | 深圳市南山区前海梦工场（报名后通知具体地点） |
+| 人数 | 30人（2-3人组队） |
+| 组队 | 建议跨领域组合（Web2/AI + Web3开发者） |
+
+## 活动议程
+
+| 时间 | 环节 | 内容 |
+| --- | --- | --- |
+| 13:30-14:00 | 签到与组队 | 物料分发，最终确认团队 |
+| 14:00-14:30 | 开场与规则说明 | 欢迎致辞，导师分享，比赛规则 |
+| 14:30-15:00 | 产品构思 | 团队头脑风暴，确定项目方向 |
+| 15:00-17:00 | 集中开发 | 使用AI工具开发智能合约 |
+| 17:00-18:00 | Demo展示与评选 | 5分钟路演，评委点评，现场投票 |
+| 18:00-18:30 | 颁奖与交流 | 颁发奖品，自由交流，合影留念 |
+
+## 比赛规则
+
+1. **开发要求**：使用AI代码助手（如Cursor、Copilot）从零开始设计并实现智能合约
+2. **评分标准**：创新性（30%）、技术难度（30%）、完成度（20%）、AI工具应用（20%）
+3. **提交方式**：
+   - Demo通过腾讯会议直播展示
+   - 代码必须提交PR到指定GitHub仓库
+   - 通过飞书问卷提交团队信息、项目说明和截图
+
+## 项目提交指南
+
+### GitHub代码提交流程
+
+所有参赛项目必须通过Pull Request提交到官方仓库: [https://github.com/openbuildxyz/ai-web3-growth-journey](https://github.com/openbuildxyz/ai-web3-growth-journey)
+
+具体步骤如下:
+
+1. **Fork仓库**: 访问[ai-web3-growth-journey](https://github.com/openbuildxyz/ai-web3-growth-journey)仓库并点击右上角的"Fork"按钮
+
+2. **克隆Fork后的仓库**:
+   ```bash
+   git clone https://github.com/你的用户名/ai-web3-growth-journey.git
+   cd ai-web3-growth-journey
+   ```
+
+3. **创建新分支**:
+   ```bash
+   git checkout -b 团队名-project
+   ```
+
+4. **添加项目文件**:
+   - 在`projects/2025-03/`目录下创建以你的团队名命名的文件夹
+   - 文件夹内应包含:
+     - `README.md`: 项目介绍、团队信息、技术实现等
+     - `contracts/`: 智能合约代码
+     - `frontend/`(可选): 前端代码
+     - `demo.md`: 包含Demo链接和截图
+     - `prompts.md`: 记录与AI助手的关键提示词交互
+
+5. **同时创建展示页面**: 在`content/docs/showcase/2025-03/`目录下创建一个Markdown文件(如`团队名.mdx`)，参考[示例模板](/docs/showcase/2025-03/example)
+
+6. **提交更改**:
+   ```bash
+   git add .
+   git commit -m "Add 团队名 project for March 2025 Hackathon"
+   git push origin 团队名-project
+   ```
+
+7. **创建Pull Request**:
+   - 访问你Fork的仓库
+   - 点击"Compare & pull request"按钮
+   - 填写PR描述，包含项目名称、团队成员、项目简介和技术亮点
+   - 提交PR
+
+### 提交内容要求
+
+- **代码注释**: 必须包含详细注释，特别说明AI生成的部分
+- **AI提示记录**: 记录与AI的关键交互提示词，展示AI如何帮助完成项目
+- **项目文档**: 必须包含完整的README.md说明项目目的、技术实现和使用方法
+- **展示页面**: 必须创建展示页面，包含项目概述、技术实现、AI辅助过程和团队收获
+
+### 截止时间
+
+所有Pull Request必须在**演示前10分钟**提交完成。逾期提交可能不被接受评审。
+
+## 奖项设置
+
+- 🏆 **一等奖**：800元 + 赞助商周边
+- 🥈 **二等奖**：600元 + 赞助商周边
+- 🥉 **三等奖**：400元 + 赞助商周边
+- 🎁 **参与奖**：纪念NFT + 随机空投奖励
+
+## 参与要求
+
+- Web2开发者需参加过线上workshop
+- Web3开发者需了解AI代码助手
+- 所有参与者需自备笔记本电脑
+
+## 准备工作
+
+### 1. 环境准备
+
+- 安装[Node.js](https://nodejs.org/)（v16+）和[pnpm](https://pnpm.io/installation)
+- 安装[Cursor](https://cursor.sh/)或配置好AI编程助手
+- 安装[MetaMask](https://metamask.io/)浏览器扩展并创建钱包
+- 熟悉[Remix IDE](https://remix.ethereum.org/)（在线Solidity开发环境）
+
+### 2. 知识准备
+
+- 完成[3月学习内容](/docs/march-learn)
+- 了解基本智能合约概念
+- 掌握基础AI提示技巧
+
+## 项目灵感
+
+以下是一些可以参考的项目方向：
+
+- 基于AI提示的动态NFT合约
+- 带有自定义逻辑的代币合约
+- 简单的DeFi应用（如质押、借贷）
+- DAO治理合约
+- 游戏相关智能合约
+
+## 报名参与
+
+1. 填写[报名表单](https://hackathonweekly.feishu.cn/share/base/form/shrcnBjdytUgit8dDtRbPCPoaac)
+2. 加入[Telegram社区](https://t.me/openbuild_xyz)获取活动更新
+3. 关注"OpenBuild"微信公众号
+
+## 联系我们
+
+有任何问题请联系：[ian@openbuild.xyz](mailto:ian@openbuild.xyz) 

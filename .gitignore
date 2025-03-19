@@ -2,6 +2,7 @@
 .vscode/
 .env
 temp/
+temp*
 /node_modules
 
 # generated content
