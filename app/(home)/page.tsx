@@ -4,6 +4,7 @@ import { HandbookOverview } from './components/HandbookOverview';
 import { ContentStructure } from './components/ContentStructure';
 import { TargetAudienceAndFAQ } from './components/TargetAudienceAndFAQ';
 import { CommunityJoin } from './components/CommunityJoin';
+import { Sponsors } from './components/Sponsors';
 import { Footer } from './components/Footer';
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function HomePage() {
         <ContentStructure />
         <TargetAudienceAndFAQ />
         <CommunityJoin />
+        <Sponsors />
         <Footer />
       </div>
     </div>
