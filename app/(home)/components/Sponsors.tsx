@@ -3,10 +3,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export function Sponsors() {
   const { resolvedTheme } = useTheme();
-  const isDarkMode = resolvedTheme === 'dark';
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDarkMode = mounted && resolvedTheme === 'dark';
 
   const sponsors = [
     {
@@ -55,6 +62,30 @@ export function Sponsors() {
       className: 'h-14 md:h-18'
     },
   ];
+
+  // 避免主题闪烁，等待挂载完成
+  if (!mounted) {
+    return (
+      <section className="py-16 container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">赞助商</h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            感谢以下合作伙伴对AI³ Growth Journey的大力支持
+          </p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
+          {sponsors.map((sponsor) => (
+            <div
+              key={sponsor.name}
+              className="flex items-center justify-center"
+            >
+              <div className={`w-auto bg-gray-100 dark:bg-gray-800 animate-pulse ${sponsor.className}`} />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 container mx-auto px-4">
