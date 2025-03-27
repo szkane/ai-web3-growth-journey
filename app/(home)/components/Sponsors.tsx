@@ -25,7 +25,7 @@ export function Sponsors() {
       url: 'https://gokite.ai',
       width: 150,
       height: 60,
-      className: 'h-12 md:h-20'
+      className: 'h-12 md:h-16'
     },
     {
       name: 'Camp Network',
@@ -41,9 +41,17 @@ export function Sponsors() {
       logo: '/logos/delysium.svg',
       logoDark: '/logos/delysium-dark.svg',
       url: 'https://www.delysium.com',
-      width: 150,
-      height: 60,
-      className: 'h-20 md:h-30'
+      width: 500,
+      height: 300,
+      className: 'h-18 md:h-20'
+    },
+    {
+      name: 'Supra',
+      logo: '/logos/supra.svg',
+      url: 'https://supra.com',
+      width: 200,
+      height: 80,
+      className: 'h-14 md:h-18'
     },
   ];
 
@@ -56,7 +64,7 @@ export function Sponsors() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
         {sponsors.map((sponsor) => (
           <Link
             href={sponsor.url}
