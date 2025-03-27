@@ -48,6 +48,7 @@ export function Sponsors() {
     {
       name: 'Supra',
       logo: '/logos/supra.svg',
+      logoDark: '/logos/supra-dark.svg',
       url: 'https://supra.com',
       width: 200,
       height: 80,
