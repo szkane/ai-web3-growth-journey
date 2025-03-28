@@ -7,7 +7,7 @@ import { Container } from '@/components/ui/container';
 
 export function CommunityJoin() {
   return (
-    <section className="w-full py-24 px-4 bg-white dark:bg-black relative overflow-hidden">
+    <section className="w-full py-16 px-4 bg-white dark:bg-black relative overflow-hidden">
       {/* Background design elements - simplified */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Main large blurred circle */}
@@ -59,10 +59,6 @@ export function CommunityJoin() {
                 成为共建者 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-          </div>
-
-          <div className="text-sm text-gray-500 dark:text-gray-400">
-            <p>赞助合作请联系: <a href="mailto:ian@openbuild.xyz" className="text-indigo-600 dark:text-indigo-400 underline">ian@openbuild.xyz</a></p>
           </div>
         </motion.div>
       </Container>

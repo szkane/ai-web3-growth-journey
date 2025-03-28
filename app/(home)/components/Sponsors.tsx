@@ -88,33 +88,34 @@ export function Sponsors() {
   }
 
   return (
-    <section className="py-16 container mx-auto px-4">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-4">赞助商</h2>
-        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          感谢以下合作伙伴对AI³ Growth Journey的大力支持
-        </p>
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
-        {sponsors.map((sponsor) => (
-          <Link
-            href={sponsor.url}
-            key={sponsor.name}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-transform hover:scale-105 flex items-center justify-center"
-          >
-            <Image
-              src={isDarkMode && sponsor.logoDark ? sponsor.logoDark : sponsor.logo}
-              alt={`${sponsor.name} logo`}
-              width={sponsor.width}
-              height={sponsor.height}
-              className={`w-auto object-contain ${sponsor.className}`}
-            />
-          </Link>
-        ))}
-      </div>
-    </section>
+      <section className="py-20 container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">赞助商</h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            感谢以下合作伙伴对AI³ Growth Journey的大力支持
+          </p>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">赞助合作请联系: <a href="mailto:ian@openbuild.xyz"
+                                className="text-indigo-600 dark:text-indigo-400 underline">ian@openbuild.xyz</a></p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
+          {sponsors.map((sponsor) => (
+              <Link
+                  href={sponsor.url}
+                  key={sponsor.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-transform hover:scale-105 flex items-center justify-center"
+              >
+                <Image
+                    src={isDarkMode && sponsor.logoDark ? sponsor.logoDark : sponsor.logo}
+                    alt={`${sponsor.name} logo`}
+                    width={sponsor.width}
+                    height={sponsor.height}
+                    className={`w-auto object-contain ${sponsor.className}`}
+                />
+              </Link>
+          ))}
+        </div>
+      </section>
   );
 }
