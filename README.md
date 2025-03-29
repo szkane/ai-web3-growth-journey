@@ -8,6 +8,10 @@
 
 AI³ Growth Journey 是由 OpenBuild 与周周黑客松联合发起的 AI+Web3 系列活动，每月在亚洲的主要地区（中国、泰国、越南、马来西亚、新加坡、印度等）举办线上 AI+Web3 Workshop 和线下 Mini-Hackathon，帮助开发者了解和学习 AI+Web3，并构建创新应用。
 
+### 网址
+- https://aiweb3.dev
+- https://ai3-growth-journey.netlify.app/
+
 ## 发起团队
 
 ### OpenBuild
