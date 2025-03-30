@@ -6,7 +6,16 @@ import GameList from './components/GameList';
 import TicTacToeABI from './contracts/TicTacToe.json';
 
 // 合约地址，部署后需要更新
-const CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+const CONTRACT_ADDRESS = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9';
+
+// 配置Web3Modal
+const providerOptions = {
+  // 可以添加其他钱包提供者
+  // 例如WalletConnect等
+};
+
+// 定义RPC URL
+const RPC_URL = 'http://172.16.136.198:8545';
 
 function App() {
   const [provider, setProvider] = useState(null);
@@ -17,19 +26,42 @@ function App() {
   const [currentGame, setCurrentGame] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [autoRefresh, setAutoRefresh] = useState(true);
+  const [web3Modal, setWeb3Modal] = useState(null);
+
+  // 初始化Web3Modal
+  useEffect(() => {
+    const modal = new Web3Modal({
+      network: 'custom',
+      cacheProvider: true,
+      providerOptions: providerOptions,
+      theme: 'dark',
+      rpc: {
+        // 使用自定义RPC URL
+        31337: RPC_URL, // 假设是Hardhat默认链ID
+      },
+    });
+    setWeb3Modal(modal);
+
+    // 如果有缓存的提供者，自动连接
+    if (modal.cachedProvider) {
+      connectWallet();
+    }
+  }, []);
 
   // 初始化Web3连接
   const connectWallet = async () => {
     try {
-      const web3Modal = new Web3Modal({
-        cacheProvider: true,
-        providerOptions: {},
-      });
+      if (!web3Modal) return;
 
-      const connection = await web3Modal.connect();
-      const provider = new ethers.providers.Web3Provider(connection);
+      setLoading(true);
+
+      // 使用Web3Modal获取提供者
+      const instance = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(instance);
       const signer = provider.getSigner();
-      const address = await signer.getAddress();
+      const accounts = await provider.listAccounts();
+      const address = accounts[0];
 
       const contract = new ethers.Contract(CONTRACT_ADDRESS, TicTacToeABI.abi, signer);
 
@@ -37,15 +69,85 @@ function App() {
       setSigner(signer);
       setContract(contract);
       setAccount(address);
+      setError(null);
 
       // 监听账户变化
-      connection.on('accountsChanged', async () => {
+      instance.on('accountsChanged', (accounts) => {
+        if (accounts.length === 0) {
+          disconnectWallet();
+        } else {
+          setAccount(accounts[0]);
+        }
+      });
+
+      // 监听链变化
+      instance.on('chainChanged', () => {
         window.location.reload();
       });
+
+      // 监听断开连接
+      instance.on('disconnect', () => {
+        disconnectWallet();
+      });
+
+      // 设置事件监听
+      setupEventListeners(contract);
+      setLoading(false);
     } catch (error) {
       console.error('连接钱包失败:', error);
       setError('连接钱包失败，请重试。');
+      setLoading(false);
     }
+  };
+
+  // 断开钱包连接
+  const disconnectWallet = async () => {
+    if (web3Modal) {
+      web3Modal.clearCachedProvider();
+    }
+    setProvider(null);
+    setSigner(null);
+    setContract(null);
+    setAccount(null);
+    setCurrentGame(null);
+  };
+
+  // 设置合约事件监听
+  const setupEventListeners = (contractInstance) => {
+    if (!contractInstance) return;
+
+    // 监听游戏创建事件
+    contractInstance.on('GameCreated', (gameId, player) => {
+      console.log('新游戏已创建:', gameId.toString());
+      fetchGames();
+    });
+
+    // 监听游戏加入事件
+    contractInstance.on('GameJoined', (gameId, player) => {
+      console.log('玩家已加入游戏:', gameId.toString());
+      fetchGames();
+      if (currentGame && currentGame.id === gameId.toNumber()) {
+        loadGame(gameId.toNumber());
+      }
+    });
+
+    // 监听游戏移动事件
+    contractInstance.on('MoveMade', (gameId, player, position) => {
+      console.log('玩家下棋:', gameId.toString(), position.toString());
+      fetchGames();
+      if (currentGame && currentGame.id === gameId.toNumber()) {
+        loadGame(gameId.toNumber());
+      }
+    });
+
+    // 监听游戏结束事件
+    contractInstance.on('GameFinished', (gameId, result) => {
+      console.log('游戏结束:', gameId.toString(), result.toString());
+      fetchGames();
+      if (currentGame && currentGame.id === gameId.toNumber()) {
+        loadGame(gameId.toNumber());
+      }
+    });
   };
 
   // 创建新游戏
@@ -151,21 +253,58 @@ function App() {
     }
   };
 
+  // 初始化合约
   useEffect(() => {
     if (contract) {
       fetchGames();
+      setupEventListeners(contract);
     }
   }, [contract]);
+
+  // 设置自动刷新 - 每10秒更新一次游戏状态
+  useEffect(() => {
+    let intervalId;
+
+    if (contract && autoRefresh) {
+      intervalId = setInterval(() => {
+        fetchGames();
+        if (currentGame) {
+          loadGame(currentGame.id);
+        }
+      }, 10000); // 10秒刷新一次
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [contract, currentGame, autoRefresh]);
 
   return (
     <div className="app">
       <h1>Web3 井字棋</h1>
 
       {!account ? (
-        <button onClick={connectWallet}>连接钱包</button>
+        <button onClick={connectWallet} disabled={loading}>
+          {loading ? '连接中...' : '连接钱包'}
+        </button>
       ) : (
         <>
           <p>已连接账户: {account}</p>
+          <button onClick={disconnectWallet} className="disconnect-btn">
+            断开连接
+          </button>
+
+          <div className="auto-refresh">
+            <input
+              type="checkbox"
+              id="autoRefresh"
+              checked={autoRefresh}
+              onChange={(e) => setAutoRefresh(e.target.checked)}
+            />
+            <label htmlFor="autoRefresh">自动刷新游戏状态</label>
+          </div>
 
           {currentGame ? (
             <GameBoard
@@ -178,6 +317,10 @@ function App() {
             <>
               <button onClick={createGame} disabled={loading}>
                 {loading ? '处理中...' : '创建新游戏'}
+              </button>
+
+              <button onClick={fetchGames} disabled={loading} style={{ marginLeft: '10px' }}>
+                刷新游戏列表
               </button>
 
               <GameList games={games} account={account} onJoin={joinGame} onSelect={loadGame} />
