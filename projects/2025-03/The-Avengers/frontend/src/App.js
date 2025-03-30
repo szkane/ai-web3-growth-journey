@@ -6,7 +6,7 @@ import GameList from './components/GameList';
 import TicTacToeABI from './contracts/TicTacToe.json';
 
 // 合约地址，部署后需要更新
-const CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000000';
+const CONTRACT_ADDRESS = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
 function App() {
   const [provider, setProvider] = useState(null);
