@@ -227,7 +227,7 @@
 
 Gemini2.5 Pro 输出的 HTML 代码，后续跟进代码进行完善和微调字体等
 
-**PPT HTML:** [点击打开 HTML 版本 PPT](ppt.html)
+**PPT HTML:** [点击打开 HTML 版本 PPT](https://nkjo3lu58g.app.yourware.so/))
 
 ```
 <!DOCTYPE html>
